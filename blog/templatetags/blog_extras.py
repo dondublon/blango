@@ -24,3 +24,13 @@ def author_details(author: user_model, current_user=None):
   if author.email:
     name = format_html(f'<a href="mailto:{author.email}">{name}</a>')
   return format_html(name)
+
+
+@register.simple_tag
+def row():
+    return '<div class="row">'
+
+
+@register.simple_tag
+def endrow():
+    return "</div>"
