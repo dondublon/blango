@@ -28,9 +28,9 @@ def author_details(author: user_model, current_user=None):
 
 @register.simple_tag
 def row():
-    return '<div class="row">'
+    return format_html('<div class="row">')
 
 
 @register.simple_tag
 def endrow():
-    return "</div>"
+    return format_html("</div>")
