@@ -9,12 +9,11 @@ user_model = get_user_model()
 register = template.Library()
 
 
-@register.simple_tag(takes_context=True)
-def author_details_tag(context):
-    request = context["request"]
-    current_user = request.user
-    post = context["post"]
-    author = post.author
+@register.filter
+def author_details(author, current_user):
+    if not isinstance(author, user_model):
+        # return empty string as safe default
+        return ""
 
     if author == current_user:
         return format_html("<strong>me</strong>")
@@ -31,7 +30,7 @@ def author_details_tag(context):
         prefix = ""
         suffix = ""
 
-    return format_html("{}{}{}", prefix, name, suffix)
+    return format_html('{}{}{}', prefix, name, suffix)
 
 
 @register.simple_tag  # take_context=True to get the context
