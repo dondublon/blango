@@ -1,13 +1,17 @@
+import logging
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from blog.forms import CommentForm
 from blog.models import Post
 
+logger = logging.getLogger()
+
 
 # Create your views here.
 def index(request):
     posts = Post.objects.filter(published_at__lte=timezone.now())
+    logger.debug("Got %d posts", len(posts))
     return render(request, "blog/index.html", {"posts": posts})
 
 

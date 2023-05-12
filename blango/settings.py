@@ -30,9 +30,9 @@ class Dev(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True) # True
 
-    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"]) #['*']
+    ALLOWED_HOSTS = values.ListValue(["127.0.0.1", "localhost", "0.0.0.0", ".codio.io"]) #['*']
     # X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
-    CSRF_COOKIE_SAMESITE = None
+    # CSRF_COOKIE_SAMESITE = None
     # CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io']
     CSRF_TRUSTED_ORIGINS = []
     CSRF_COOKIE_SECURE = True
@@ -144,7 +144,17 @@ class Dev(Configuration):
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
-
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {"class": "logging.StreamHandler", "stream": "ext://sys.stdout"},
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        }
+    }
 
 class Prod(Dev):
     DEBUG = False
