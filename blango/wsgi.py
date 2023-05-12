@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 import os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blango.settings')
-os.environ.setdefault("DJANGO_CONFIGURATION", "Prod")
+os.environ.setdefault("DJANGO_CONFIGURATION", "Dev")  # could be Prod
 
 #from django.core.wsgi import get_wsgi_application
 from configurations.wsgi import get_wsgi_application

@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from configurations import Configuration
 from configurations import values
+import dj_database_url
 
 
 class Dev(Configuration):
@@ -89,12 +90,14 @@ class Dev(Configuration):
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     }
+    # }
+    DATABASES = values.DatabaseURLValue(f"sqlite:///{BASE_DIR}/db.sqlite3")
+    # ^ could be a dictionary.
 
 
     # Password validation
@@ -145,4 +148,5 @@ class Dev(Configuration):
 
 class Prod(Dev):
     DEBUG = False
-    SECRET_KEY = values.SecretValue("any-hard-coded-value")  # value - to prevent the default.
+    # SECRET_KEY = values.SecretValue("any-hard-coded-value")  # value - to prevent the default.
+    # ^ Doesn't work even with env value
