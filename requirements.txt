@@ -3,4 +3,4 @@ crispy-bootstrap5
 django-crispy-forms
 django-configurations
 django[argon2]
-pymemcache==4.0.0
+pymemcache==4.0.0  # $ sudo apt install memcached

@@ -193,6 +193,32 @@ class Dev(Configuration):
             "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
             "LOCATION": "127.0.0.1:11211"
         }
+        # For DB cache:
+        # {
+        #     "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        #     "LOCATION": "my_cache_table",
+        # }
+        # $ python manage.py createcachetable - to apply
+
+        # For filesystem cache:
+        # {
+        #     "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        #     "LOCATION": "/var/tmp/django_cache",
+        # }
+
+        # For Django process in-memory cache (default):
+        # CACHES = {
+        # "default": {
+        #     "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        #     "LOCATION": "unique-snowflake",  # optional
+        # }
+
+        # Dummy cache, interface only.
+        # "default": {
+        #     "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        # }
+
+        # Arguments: TIMEOUT, KEY_PREFIX
     }
 
 
